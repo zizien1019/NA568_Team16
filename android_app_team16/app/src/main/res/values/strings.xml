@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Team16_NA568</string>
+    <string name="action_settings">Settings</string>
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+
+    <string name="textH">H</string>
+    <string name="textS">S</string>
+    <string name="textV">V</string>
+    <string name="textED">ED</string>
+    <string name="textMG">MG</string>
+</resources>

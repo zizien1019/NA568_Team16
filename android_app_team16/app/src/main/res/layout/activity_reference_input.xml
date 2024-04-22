@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ReferenceInput">
+
+    <EditText
+        android:id="@+id/editTextObjectLength"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Real Object Length"
+        android:inputType="numberSigned|numberDecimal"/>
+
+    <EditText
+        android:id="@+id/editTextObjectWidth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Real Object Width"
+        android:inputType="numberSigned|numberDecimal"
+        android:layout_below="@id/editTextObjectLength"/>
+
+    <EditText
+        android:id="@+id/editTextReferenceR"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Reference R"
+        android:inputType="numberSigned|numberDecimal"
+        android:layout_below="@id/editTextObjectWidth"/>
+
+    <EditText
+        android:id="@+id/editTextReferencePhi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Reference Phi"
+        android:inputType="numberSigned|numberDecimal"
+        android:layout_below="@id/editTextReferenceR"/>
+
+    <EditText
+        android:id="@+id/editTextReferenceTheta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Reference Theta"
+        android:inputType="numberSigned|numberDecimal"
+        android:layout_below="@id/editTextReferencePhi"/>
+
+    <EditText
+        android:id="@+id/editTextReferencePsi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Reference Psi"
+        android:inputType="numberSigned|numberDecimal"
+        android:layout_below="@id/editTextReferenceTheta"/>
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/editTextReferencePsi"/>
+
+</RelativeLayout>
