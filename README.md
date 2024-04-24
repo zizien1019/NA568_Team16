@@ -37,7 +37,7 @@ We will explaing the menus one by one.
 1. HSV Object Segmentation
 *(Describe this)
 
-![Image Alt text]()
+![Image Alt text](figures/HSV Object Segmentation.jpeg "test")
 
 3. Reference Input
 This is used to update the object dimensions, and manually input the desired reference image using the states (r, phi, theta, and psi). The default object size is 34.5 cm wide by 14.5 cm tall. Please change this according to your object.
