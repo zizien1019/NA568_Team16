@@ -24,6 +24,48 @@ This project implements an Android application for pose estimation in 6-DoF ($x$
     **Settings &rarr; App &rarr; 'Team16_NA568' (app name) &rarr; Permissions &rarr; Camera &rarr; Allow**
   - Open the app.
 
+
+
+### Application Interaction and Usage
+The app has three menus:
+1. **HSV Object Segmentation**
+2. **Reference Input**
+3. **Pose Perfrct Action**
+We will explaining the menus one by one.
+
+1. HSV Object Segmentation
+In this instant the user can first segment the wanted color by **touching** the object in the display. If further adjustment is needed, there are 5 buttons provided with its corresponding sliders:
+    1. **H**: Adjust ***Hue*** thresholding. The *Top* slider for the *Minimum* threshold and the *Bottom* slider for the *Maximum* threshold adjuster.
+    2. **S**: Adjust ***Saturation*** thresholding. The *Top* slider for the *Minimum* threshold and the *Bottom* slider for the *Maximum* threshold adjuster.
+    3. **V**: Adjust ***Value*** thresholding. The *Top* slider for the *Minimum* threshold and the *Bottom* slider for the *Maximum* threshold adjuster.
+    4. **ED**: Adjust morphological operator ***Erode*** and ***Dilate*** mask size. The *Top* slider is for the *Erode* size and the *Bottom* for the *Dilate* size. This button also serve as ***toggle*** to display either the ***RGB*** or ***Binary*** color space. It can be used for removing unwanted contour.
+    5. **MG**: Adjust the blurring operator ***MedianBlur*** and ***GaussianBlur*** mask size. The *Top* slider is for the *Median* size and the *Bottom* for the *Gaussian* size. This button also serve as ***toggle*** to display either the ***RGB*** or ***Binary*** color space. It can be used for smoothing out or removing unwanted contour.
+
+If you prefer not to use the "touch" feature, you can adjust the segmentation just based on the HSV threshold. For doing this, first make all the HSV sliders ranged at their maximum (top slider to the most left and bottom slider to the most right). Then, adjust the minimum and maximum slider sequentially from **H** &rarr; **S** &rarr; **V**.
+
+![HSV Object Segmentation](https://github.com/zizien1019/NA568_Team16/assets/113637971/11ba64ab-c299-4b62-961f-ab09b91a8cc4)
+
+
+2. Reference Input
+This is used to update the object dimensions, and manually input the desired reference image using the states (r, phi, theta, and psi). The default object size is 34.5 cm wide by 14.5 cm tall. Please change this according to your object.
+
+![Reference Input](https://github.com/zizien1019/NA568_Team16/assets/113637971/2da23e17-7d1d-43de-9681-cebac0307cc1)
+
+
+3. Pose Perfect Action:
+This part of the app guides the user on how to achieve the correct pose. It gives the following instructions: forward/back, up/down, right/left, and clockwise/counterclockwise.
+![Pose Perfect Action1](https://github.com/zizien1019/NA568_Team16/assets/113637971/9b9f44c5-65a4-45b0-a7e1-a3ac6d25ded0)
+
+
+The user can automatically selsect the new desired pose (reference pose) by clicking this button
+
+![Pose Perfect Action2](https://github.com/zizien1019/NA568_Team16/assets/113637971/d05ad614-f165-4de1-b05b-6d332cc06893)
+
+The user can reset the desired or reference pose by clicking this button
+
+![Pose Perfect Action3](https://github.com/zizien1019/NA568_Team16/assets/113637971/0c3dc39a-9ad3-49a8-84f9-744aa0af1ff7)
+
+
 ### Disclaimer
 For correct pose estimation, the object dimension (which can be adjusted in the app) and the camera intrinsics should be defined. In this project, we use our calibrated Google Pixel 7 which has camera intrinsic parameters as:
 
@@ -57,59 +99,7 @@ k_{android\_gp7} = \begin{bmatrix}
 \end{bmatrix}
 $$
 
-If you have your intrinsic camera parameters and want to build the app via Android Studio, you can change those parameters in [this lines](https://github.com/zizien1019/NA568_Team16/blob/main/android_app_team16/app/src/main/java/com/mbsbahru/na568Teamproject_MohammedAlanUsmanBahru/MainActivity.java#L113C5-L122C96).
-
-
-### Usage
-
-1. **Prerequisites:**
-    * Ensure you have Java installed (version information) and an IDE configured for Java development.
-    * Install OpenCV libraries following the official instructions ([https://opencv.org/](https://opencv.org/)).
-
-2. **Running the Application:**
-    * Clone or download the repository.
-    * Open the project in your IDE and ensure all dependencies are properly linked.
-    * Compile and run the application (specific instructions based on your IDE).
-
-
-3. **Interaction:**
-The app has three menus:
-1. HSV Object Segmentation
-2. Reference Input
-3. Pose Perfrct Action
-We will explaing the menus one by one.
-
-1. HSV Object Segmentation
-*(Describe this)
-
-![HSV Object Segmentation](https://github.com/zizien1019/NA568_Team16/assets/113637971/11ba64ab-c299-4b62-961f-ab09b91a8cc4)
-
-
-2. Reference Input
-This is used to update the object dimensions, and manually input the desired reference image using the states (r, phi, theta, and psi). The default object size is 34.5 cm wide by 14.5 cm tall. Please change this according to your object.
-
-![Reference Input](https://github.com/zizien1019/NA568_Team16/assets/113637971/2da23e17-7d1d-43de-9681-cebac0307cc1)
-
-
-3. Pose Perfect Action:
-This part of the app guides the user on how to achieve the correct pose. It gives the following instructions: forward/back, up/down, right/left, and clockwise/counterclockwise.
-![Pose Perfect Action1](https://github.com/zizien1019/NA568_Team16/assets/113637971/9b9f44c5-65a4-45b0-a7e1-a3ac6d25ded0)
-
-
-The user can automatically selsect the new desired pose (reference pose) by clicking this button
-
-![Pose Perfect Action2](https://github.com/zizien1019/NA568_Team16/assets/113637971/d05ad614-f165-4de1-b05b-6d332cc06893)
-
-The user can reset the desired pose by clicking this button
-
-![Pose Perfect Action3](https://github.com/zizien1019/NA568_Team16/assets/113637971/0c3dc39a-9ad3-49a8-84f9-744aa0af1ff7)
-
-
-### Repositories Information
-
-### Code Breakdown
-
-(Provide a brief overview of the code structure. Briefly mention the main functionalities of different packages or classes. This section is optional but can be helpful for developers who want to understand or extend the application.)
+If you have your intrinsic camera parameters and want to build the app via Android Studio, you can change those parameters in [these lines](https://github.com/zizien1019/NA568_Team16/blob/main/android_app_team16/app/src/main/java/com/mbsbahru/na568Teamproject_MohammedAlanUsmanBahru/MainActivity.java#L113C5-L122C96).
 
 
 * **Authors:** Muhammad Bahru Sholahuddin, Mohammed Buhlaigah, Zih-En Tseng, Usman Shahzad
