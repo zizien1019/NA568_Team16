@@ -28,32 +28,32 @@ This project implements an Android application for pose estimation in 6-DoF ($x$
 
 ### Application Interaction and Usage
 The app has three menus:
-1. **HSV Object Segmentation**
-2. **Reference Input**
-3. **Pose Perfrct Action**
-We will explaining the menus one by one.
+ - *HSV Object Segmentation*
+ - *Reference Input*
+ - *Pose Perfect Action*
 
-1. HSV Object Segmentation
+1. **HSV Object Segmentation**\
 In this instant the user can first segment the wanted color by **touching** the object in the display. If further adjustment is needed, there are 5 buttons provided with its corresponding sliders:
     1. **H**: Adjust ***Hue*** thresholding. The *Top* slider for the *Minimum* threshold and the *Bottom* slider for the *Maximum* threshold adjuster.
     2. **S**: Adjust ***Saturation*** thresholding. The *Top* slider for the *Minimum* threshold and the *Bottom* slider for the *Maximum* threshold adjuster.
     3. **V**: Adjust ***Value*** thresholding. The *Top* slider for the *Minimum* threshold and the *Bottom* slider for the *Maximum* threshold adjuster.
     4. **ED**: Adjust morphological operator ***Erode*** and ***Dilate*** mask size. The *Top* slider is for the *Erode* size and the *Bottom* for the *Dilate* size. This button also serve as ***toggle*** to display either the ***RGB*** or ***Binary*** color space. It can be used for removing unwanted contour.
     5. **MG**: Adjust the blurring operator ***MedianBlur*** and ***GaussianBlur*** mask size. The *Top* slider is for the *Median* size and the *Bottom* for the *Gaussian* size. This button also serve as ***toggle*** to display either the ***RGB*** or ***Binary*** color space. It can be used for smoothing out or removing unwanted contour.
-
-If you prefer not to use the "touch" feature, you can adjust the segmentation just based on the HSV threshold. For doing this, first make all the HSV sliders ranged at their maximum (top slider to the most left and bottom slider to the most right). Then, adjust the minimum and maximum slider sequentially from **H** &rarr; **S** &rarr; **V**.
+   
+>> If you prefer not to use the "touch" feature, you can adjust the segmentation just based on the HSV threshold. For doing this, first make all the HSV sliders ranged at their maximum (top slider to the most left and bottom slider to the most right). Then, adjust the minimum and maximum slider sequentially from **H** &rarr; **S** &rarr; **V**.
 
 ![HSV Object Segmentation](https://github.com/zizien1019/NA568_Team16/assets/113637971/11ba64ab-c299-4b62-961f-ab09b91a8cc4)
 
 
-2. Reference Input
-This is used to update the object dimensions, and manually input the desired reference image using the states (r, phi, theta, and psi). The default object size is 34.5 cm wide by 14.5 cm tall. Please change this according to your object.
+2. **Reference Input**\
+This is used to update the object dimensions, and manually input the desired reference image using the states (euclidean distance $r$, $\phi$, $\theta$, and $\psi$). The default object size is 34.5 cm wide by 14.5 cm tall. Please change this according to your object.
 
 ![Reference Input](https://github.com/zizien1019/NA568_Team16/assets/113637971/2da23e17-7d1d-43de-9681-cebac0307cc1)
 
 
-3. Pose Perfect Action:
-This part of the app guides the user on how to achieve the correct pose. It gives the following instructions: forward/back, up/down, right/left, and clockwise/counterclockwise.
+3. **Pose Perfect Action**\
+This part of the app guides the user on how to achieve the correct pose. It gives the following instructions: **forward** / **back**, **up** / **down**, **right** / **left**, and **clockwise** / **counterclockwise**.
+
 ![Pose Perfect Action1](https://github.com/zizien1019/NA568_Team16/assets/113637971/9b9f44c5-65a4-45b0-a7e1-a3ac6d25ded0)
 
 
