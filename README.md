@@ -1,19 +1,64 @@
 # EECS568 Team16, Winter 2024
- 
-## Pose Perfect - An Android Pose Estimation & Guiadance App
 
-This project implements an Android application for pose estimation, designed to guide users towards capturing images from a specific angle.
+### Repository Information
+* [android_app_team16](https://github.com/zizien1019/NA568_Team16/tree/main/android_app_team16) containing the the project code for building Android app using Java. The java codes are implemented [here](https://github.com/zizien1019/NA568_Team16/tree/main/android_app_team16/app/src/main/java/com/mbsbahru/na568Teamproject_MohammedAlanUsmanBahru). 
+* [Data_visualization](https://github.com/zizien1019/NA568_Team16/tree/main/Data_visualization) containing the code and data for examining the testing.
+* [python_code](https://github.com/zizien1019/NA568_Team16/tree/main/python_code) containing the code on implementing Kalman and Particle Filter.
+* [figures](https://github.com/zizien1019/NA568_Team16/tree/main/figures) containing the figures for documentation purpose.
+ 
+## Pose Perfect - An Android Pose Estimation & Guidance App
+
+This project implements an Android application for pose estimation in 6-DoF ($x$, $y$, $z$, $\phi$, $\theta$, $\psi$) of the camera coordinate toward the object frame, designed to guide users towards capturing images from a specific angle.
 
 ### Features
 
-* Uses computer vision techniques to identify target objects.
+* Uses computer vision Perspective-n-Points (PnP) techniques to etimates the positions of the camera toward the object frame.
 * Provides real-time feedback on user positioning for achieving the desired pose. It uses simple instructions: forward/backward right/left, up/down, and clockwise/counterclockwise
 
-### Dependencies
+### Installation
+* To develop and install the application via Android Studio please [read through this](https://github.com/zizien1019/NA568_Team16/new/main/android_app_team16/README.md).
+* To install the app more instantly you follow through this step:
+  - Download through your Android device, the generated '.apk' file [here](https://drive.google.com/file/d/1H8T5yAWxWS_5-SAM8eWqe3GmNhLwfa4T/view?usp=sharing).
+  - Install the package by the Android built-in package installer or by using third-party APK installer from the Google Play.
+  - Grant Permission for the application to access the camera by go through:\
+    **Settings &rarr; App &rarr; 'Team16_NA568' (app name) &rarr; Permissions &rarr; Camera &rarr; Allow**
+  - Open the app.
 
-This application requires the following libraries:
+### Disclaimer
+For correct pose estimation, the object dimension (which can be adjusted in the app) and the camera intrinsics should be defined. In this project, we use our calibrated Google Pixel 7 which has camera intrinsic parameters as:
 
-* OpenCV (version information)
+$$
+K_{android\_gp7} = \begin{bmatrix}
+    f_x & s & c_x\\
+    0 & f_y & c_y\\
+    0 & 0 & 1
+\end{bmatrix}
+= \begin{bmatrix}
+    2998 & 8 & 1148\\
+    0 & 2971 & 2049\\
+    0 & 0 & 1
+\end{bmatrix} \\
+$$
+
+$$
+k_{android\_gp7} = \begin{bmatrix}
+    k_1\\
+    k_2\\
+    p_1\\
+    p_2\\
+    k_3
+\end{bmatrix}
+= \begin{bmatrix}
+    0.2585\\
+    -1.6159\\
+    -0.0051\\
+    -0.0008\\
+    4.2888
+\end{bmatrix}
+$$
+
+If you have your intrinsic camera parameters and want to build the app via Android Studio, you can change those parameters in [this lines](https://github.com/zizien1019/NA568_Team16/blob/main/android_app_team16/app/src/main/java/com/mbsbahru/na568Teamproject_MohammedAlanUsmanBahru/MainActivity.java#L113C5-L122C96).
+
 
 ### Usage
 
@@ -60,17 +105,12 @@ The user can reset the desired pose by clicking this button
 ![Pose Perfect Action3](https://github.com/zizien1019/NA568_Team16/assets/113637971/0c3dc39a-9ad3-49a8-84f9-744aa0af1ff7)
 
 
+### Repositories Information
+
 ### Code Breakdown
 
 (Provide a brief overview of the code structure. Briefly mention the main functionalities of different packages or classes. This section is optional but can be helpful for developers who want to understand or extend the application.)
 
-### License
-
-This project is licensed under [License Name] (link to license file).
-
-### Contributing
-
-We welcome contributions to this project. Please refer to the CONTRIBUTING.md file for guidelines on how to contribute.
 
 * **Authors:** Muhammad Bahru Sholahuddin, Mohammed Buhlaigah, Zih-En Tseng, Usman Shahzad
 
