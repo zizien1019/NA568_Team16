@@ -57,12 +57,11 @@ This part of the app guides the user on how to achieve the correct pose. It give
 ![Pose Perfect Action1](https://github.com/zizien1019/NA568_Team16/assets/113637971/9b9f44c5-65a4-45b0-a7e1-a3ac6d25ded0)
 
 
-The user can automatically selsect the new desired pose (reference pose) by clicking this button
-
+> The user can automatically selsect the new desired pose (reference pose) by clicking the *play* button (pointed by red arrow)
 ![Pose Perfect Action2](https://github.com/zizien1019/NA568_Team16/assets/113637971/d05ad614-f165-4de1-b05b-6d332cc06893)
 
-The user can reset the desired or reference pose by clicking this button
 
+> The user can reset the desired or reference pose by clicking the *reset* button (pointed by red arrow)
 ![Pose Perfect Action3](https://github.com/zizien1019/NA568_Team16/assets/113637971/0c3dc39a-9ad3-49a8-84f9-744aa0af1ff7)
 
 
