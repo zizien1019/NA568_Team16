@@ -37,7 +37,7 @@ For running the app via Android Studio, this application uses the following libr
       - Connect your Android device to your computer via USB cable.
       - In the Android Studio IDE press *Run* (or pressing control+R) button at the top of the window.
    5) If the build is not successful:
-      - Download [OpenCV for Android dependency](https://sourceforge.net/projects/opencvlibrary/files/4.1.0/opencv-4.1.0-android-sdk.zip/download)) and extract it.
+      - Download [OpenCV for Android dependency](https://sourceforge.net/projects/opencvlibrary/files/4.1.0/opencv-4.1.0-android-sdk.zip/download) and extract it.
       - In the Android Studio IDE:
         - Load the dependency\
           **File** &rarr; **New** &rarr; **Import Module** &rarr; **Browse** &rarr; **OpenCV-android-sdk** (the OpenCV dependency you have extracted) &rarr; **sdk**  &rarr; click **Open** button &rarr; change module name e.g.: ***opencv*** &rarr; click **Finish**
@@ -47,3 +47,5 @@ For running the app via Android Studio, this application uses the following libr
           at the leftmost side menu make sure that **Project** tab is activated &rarr; in the *dropdown* arrow at the top left IDE window click **Project** &rarr; extend **app** by clicking at the arrow &rarr; click and open **build.gradle** in *app* directory &rarr; **remove** the line of *implementation project(path: ':opencv2')* but **keep** *implementation project(path: ':opencv2')* &rarr; click menu bar **File** &rarr; **Sync Project with Gradle Files**.
         - After sucessful, do the step in the point [4](https://github.com/zizien1019/NA568_Team16/blob/ac16694f9cce5ca201592b6c1486c34a0073577a/android_app_team16/README.md?plain=1#L33-L36).
 6) Modify and develop the Android app, commonly by modifying code in [Java](https://github.com/zizien1019/NA568_Team16/tree/main/android_app_team16/app/src/main/java/com/mbsbahru/na568Teamproject_MohammedAlanUsmanBahru) and [XML](https://github.com/zizien1019/NA568_Team16/tree/main/android_app_team16/app/src/main/res/layout) directories.
+
+Thank you
