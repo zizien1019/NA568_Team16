@@ -37,15 +37,25 @@ We will explaing the menus one by one.
 1. HSV Object Segmentation
 *(Describe this)
 
-![Image Alt text](figures/HSV Object Segmentation.jpeg "test")
+![HSV Object Segmentation](https://github.com/zizien1019/NA568_Team16/assets/113637971/11ba64ab-c299-4b62-961f-ab09b91a8cc4)
+
 
 3. Reference Input
 This is used to update the object dimensions, and manually input the desired reference image using the states (r, phi, theta, and psi). The default object size is 34.5 cm wide by 14.5 cm tall. Please change this according to your object.
 
+![Reference Input](https://github.com/zizien1019/NA568_Team16/assets/113637971/2da23e17-7d1d-43de-9681-cebac0307cc1)
+
+
 4. Pose Perfect Action:
-This part of the app guides the user on how to achieve the correct pose. The user can automatically 
-    * (Describe how the user interacts with the application to achieve the desired pose estimation. 
-     This might involve providing instructions on what the user sees on the screen and how their actions are interpreted by the application.)
+This part of the app guides the user on how to achieve the correct pose. It gives the following instructions: forward/back, up/down, right/left, and clockwise/counterclockwise.
+![Pose Perfect Action1](https://github.com/zizien1019/NA568_Team16/assets/113637971/9b9f44c5-65a4-45b0-a7e1-a3ac6d25ded0)
+
+
+The user can automatically selsect the new desired pose (reference pose) by clicking this button
+
+![Pose Perfect Action2](https://github.com/zizien1019/NA568_Team16/assets/113637971/d05ad614-f165-4de1-b05b-6d332cc06893)
+
+The user can reset the 
 
 ### Code Breakdown
 
