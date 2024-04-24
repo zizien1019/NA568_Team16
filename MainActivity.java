@@ -49,7 +49,7 @@ import java.util.UUID;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity implements CvCameraViewListener2, SensorEventListener {
-    private boolean toggleButtonSavecsvVsIntImu = true;
+    private int toggleButtonSavecsvVsIntImuVsReference = 1;
     private boolean toggleLowpassFilter = false;
     private boolean toggleKalmanFilter = true;
     private SensorManager sensorManager;
@@ -101,10 +101,7 @@ public class MainActivity extends AppCompatActivity implements CvCameraViewListe
     private MenuItem     mItemPoseAction;
     private CameraBridgeViewBase mOpenCvCameraView;
 
-    private Point corner_topLeft = new Point(0, 0);
-    private Point corner_topRight = new Point(0, 0);
-    private Point corner_botLeft = new Point(0, 0);
-    private Point corner_botRight = new Point(0, 0);
+
 
     private MatOfPoint3f objectPoints = new MatOfPoint3f();
     private MatOfPoint2f imagePoints = new MatOfPoint2f();
@@ -126,14 +123,14 @@ public class MainActivity extends AppCompatActivity implements CvCameraViewListe
     double euc_dist_R = 0;
     private double BASE_REAL_LENGTH = ReferenceInput.objectLength; // real-world object length in cm // obj2 27.8
     private double BASE_REAL_WIDTH = ReferenceInput.objectWidth; // real-world object width in cm // obj2 20.75
-    double REFERENCE_R = 115.3;
-    double REFERENCE_PHI = -17;
-    double REFERENCE_THETA = 21.3;
-    double REFERENCE_PSI = 13.3;
-    double TOLERANCE_R = 1;
-    double TOLERANCE_PHI = 1;
-    double TOLERANCE_THETA = 1;
-    double TOLERANCE_PSI = 1;
+    double REFERENCE_R = ReferenceInput.referenceR;
+    double REFERENCE_PHI = ReferenceInput.referencePhi;
+    double REFERENCE_THETA = ReferenceInput.referenceTheta;
+    double REFERENCE_PSI = ReferenceInput.referencePsi;
+    double TOLERANCE_R = 5;
+    double TOLERANCE_PHI = 5;
+    double TOLERANCE_THETA = 5;
+    double TOLERANCE_PSI = 5;
     private double[] CamLinPositionsData = new double[3];
     private double[] CamAngPositionsData = new double[3];
     private double[] filteredState = new double[6];
@@ -275,7 +272,7 @@ public class MainActivity extends AppCompatActivity implements CvCameraViewListe
          FloatingActionButton bStart = findViewById(R.id.fabstart);
          FloatingActionButton bReset = findViewById(R.id.fabreset);
 
-         if (toggleButtonSavecsvVsIntImu) {
+         if (toggleButtonSavecsvVsIntImuVsReference == 0) {
              bStart.setOnClickListener(new View.OnClickListener() {
                  @Override
                  public void onClick(View view) {
@@ -283,7 +280,17 @@ public class MainActivity extends AppCompatActivity implements CvCameraViewListe
                  }
              });
          }
-         else {
+         else if (toggleButtonSavecsvVsIntImuVsReference == 1){
+             bStart.setOnClickListener(new View.OnClickListener() {
+                 public void onClick(View view){
+                     REFERENCE_R = euc_dist_R;
+                     REFERENCE_PHI = filteredState[3];
+                     REFERENCE_THETA = filteredState[4];
+                     REFERENCE_PSI = filteredState[5];
+                 }
+             });
+         }
+         else if (toggleButtonSavecsvVsIntImuVsReference == 2){
              bStart.setOnClickListener(new View.OnClickListener() {
                  public void onClick(View view) {
                      lastUpdateTime = System.nanoTime();
@@ -293,13 +300,12 @@ public class MainActivity extends AppCompatActivity implements CvCameraViewListe
                      } else {
                          isUpdating = true;
                          lastUpdateTime = System.currentTimeMillis();
-
                      }
                  }
              });
          }
 
-         if (toggleButtonSavecsvVsIntImu) {
+         if (toggleButtonSavecsvVsIntImuVsReference == 0) {
              bReset.setOnClickListener(new View.OnClickListener() {
                  @Override
                  public void onClick(View view) {
@@ -307,7 +313,17 @@ public class MainActivity extends AppCompatActivity implements CvCameraViewListe
                  }
              });
          }
-         else {
+         else if (toggleButtonSavecsvVsIntImuVsReference == 1){
+             bReset.setOnClickListener(new View.OnClickListener() {
+                 public void onClick(View view){
+                 REFERENCE_R =ReferenceInput.referenceR;
+                 REFERENCE_PHI =ReferenceInput.referencePhi;
+                 REFERENCE_THETA =ReferenceInput.referenceTheta;
+                 REFERENCE_PSI =ReferenceInput.referencePsi;
+             }
+             });
+         }
+         else if (toggleButtonSavecsvVsIntImuVsReference == 2){
              bReset.setOnClickListener(new View.OnClickListener() {
                  @Override
                  public void onClick(View view) {
@@ -397,6 +413,10 @@ public class MainActivity extends AppCompatActivity implements CvCameraViewListe
 
 
              Point[] points = approxCurve.toArray();
+             Point corner_topLeft = new Point(0, 0);
+             Point corner_topRight = new Point(0, 0);
+             Point corner_botLeft = new Point(0, 0);
+             Point corner_botRight = new Point(0, 0);
 
              Arrays.sort(points, Comparator.comparingDouble(point -> point.x));
             if (points.length == 4) {
@@ -588,10 +608,10 @@ public class MainActivity extends AppCompatActivity implements CvCameraViewListe
                      psi_last = CamAngPositionsData[2];
                  }
              }
-             double R_ref_diff = ReferenceInput.referenceR - euc_dist_R;
-             double phi_ref_diff = ReferenceInput.referencePhi - filteredState[3];
-             double theta_ref_diff = ReferenceInput.referenceTheta - filteredState[4];
-             double psi_ref_diff = ReferenceInput.referencePsi - filteredState[5];
+             double R_ref_diff = REFERENCE_R - euc_dist_R;
+             double phi_ref_diff = REFERENCE_PHI - filteredState[3];
+             double theta_ref_diff = REFERENCE_THETA - filteredState[4];
+             double psi_ref_diff = REFERENCE_PSI - filteredState[5];
              if (R_ref_diff > TOLERANCE_R){
                  u_control = new double[][]{
                          {-1},
@@ -665,7 +685,7 @@ public class MainActivity extends AppCompatActivity implements CvCameraViewListe
                  Imgproc.putText(mRgba, "CWise!", new Point(mRgba.cols()*0.8, mRgba.rows()*0.95), Imgproc.FONT_HERSHEY_SIMPLEX, 2, BLUE_COLOR, 5);
              }
              if (-TOLERANCE_R < R_ref_diff && R_ref_diff < TOLERANCE_R && -TOLERANCE_PHI < phi_ref_diff && phi_ref_diff < TOLERANCE_PHI && -TOLERANCE_THETA < theta_ref_diff && theta_ref_diff < TOLERANCE_THETA && -TOLERANCE_PSI < psi_ref_diff && psi_ref_diff < TOLERANCE_PSI){
-                 Imgproc.putText(mRgba, "Pose Achieved!", new Point(mRgba.cols()*0.3, mRgba.rows()*0.95), Imgproc.FONT_HERSHEY_SIMPLEX, 3, GREEN_COLOR, 5);
+                 Imgproc.putText(mRgba, "Pose Achieved!", new Point(mRgba.cols()*0.3, mRgba.rows()*0.95), Imgproc.FONT_HERSHEY_SIMPLEX, 3, YELLOW_COLOR, 5);
              }
  //////////////////////////////////////////////////////////////// mohd ///////////////////////////////////////////////////////
          }
@@ -691,7 +711,7 @@ public class MainActivity extends AppCompatActivity implements CvCameraViewListe
              saveDataToCSV(dataString, "navarch568.csv");
          }
 
-         String refPosText = String.format("ref_R: %.2f ref_phi: %.2f ref_theta: %.2f ref_psi: %.2f", ReferenceInput.referenceR, ReferenceInput.referencePhi, ReferenceInput.referenceTheta, ReferenceInput.referencePsi);
+         String refPosText = String.format("ref_R: %.2f ref_phi: %.2f ref_theta: %.2f ref_psi: %.2f", REFERENCE_R, REFERENCE_PHI, REFERENCE_THETA, REFERENCE_PSI);
          String camLinPosText = String.format("x: %.2f y: %.2f z: %.2f R: %.2f", CamLinPositionsData[0], CamLinPositionsData[1], CamLinPositionsData[2], euc_dist_R);
          String camAngPosText = String.format("phi: %.2f theta: %.2f psi: %.2f", CamAngPositionsData[0], CamAngPositionsData[1], CamAngPositionsData[2]);
          String camFilteredPosText = String.format("KalFiltd x: %.2f y: %.2f z: %.2f Phi: %.2f Theta: %.2f Psi: %.2f", filteredState[0], filteredState[1], filteredState[2], filteredState[3], filteredState[4], filteredState[5]);
@@ -702,10 +722,11 @@ public class MainActivity extends AppCompatActivity implements CvCameraViewListe
 //         String positionsText = String.format("ImuLinPos x: %.2f y: %.2f z: %.2f", ImuPositionsData[0], ImuPositionsData[1], ImuPositionsData[2]);
 //         String velocitiesText = String.format("ImuVel u: %.2f v: %.2f w: %.2f", ImuVelocitiesData[0], ImuVelocitiesData[1], ImuVelocitiesData[2]);
          Imgproc.putText(mRgba, refPosText, new Point(10, 30), Imgproc.FONT_HERSHEY_SIMPLEX, 1, YELLOW_COLOR, 4);
-         Imgproc.putText(mRgba, camLinPosText, new Point(10, 60), Imgproc.FONT_HERSHEY_SIMPLEX, 1, YELLOW_COLOR, 4);
-         Imgproc.putText(mRgba, camAngPosText, new Point(10, 90), Imgproc.FONT_HERSHEY_SIMPLEX, 1, YELLOW_COLOR, 4);
-         Imgproc.putText(mRgba, camFilteredPosText, new Point(10, 120), Imgproc.FONT_HERSHEY_SIMPLEX, 1, YELLOW_COLOR, 4);
-         Imgproc.putText(mRgba, accelGyroText, new Point(10, 150), Imgproc.FONT_HERSHEY_SIMPLEX, 1, YELLOW_COLOR, 4);
+         Imgproc.putText(mRgba, accelGyroText, new Point(10, 60), Imgproc.FONT_HERSHEY_SIMPLEX, 1, YELLOW_COLOR, 4);
+         Imgproc.putText(mRgba, camLinPosText, new Point(10, 90), Imgproc.FONT_HERSHEY_SIMPLEX, 1, YELLOW_COLOR, 4);
+         Imgproc.putText(mRgba, camAngPosText, new Point(10, 120), Imgproc.FONT_HERSHEY_SIMPLEX, 1, YELLOW_COLOR, 4);
+         Imgproc.putText(mRgba, camFilteredPosText, new Point(10, 150), Imgproc.FONT_HERSHEY_SIMPLEX, 1, YELLOW_COLOR, 4);
+
 //         Imgproc.putText(mRgba, objDimText, new Point(10, 180), Imgproc.FONT_HERSHEY_SIMPLEX, 1, YELLOW_COLOR, 4);
 //         Imgproc.putText(mRgba, magnetRawText, new Point(10, 210), Imgproc.FONT_HERSHEY_SIMPLEX, 1, BLACK_COLOR, 2);
 //         Imgproc.putText(mRgba, orientationText, new Point(10, 240), Imgproc.FONT_HERSHEY_SIMPLEX, 1, new Scalar(0, 0, 0), 2);
