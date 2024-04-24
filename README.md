@@ -37,10 +37,12 @@ We will explaing the menus one by one.
 1. HSV Object Segmentation
 *(Describe this)
 
-2. Reference Input
+![Image Alt text]()
+
+3. Reference Input
 This is used to update the object dimensions, and manually input the desired reference image using the states (r, phi, theta, and psi). The default object size is 34.5 cm wide by 14.5 cm tall. Please change this according to your object.
 
-3. Pose Perfect Action:
+4. Pose Perfect Action:
 This part of the app guides the user on how to achieve the correct pose. The user can automatically 
     * (Describe how the user interacts with the application to achieve the desired pose estimation. 
      This might involve providing instructions on what the user sees on the screen and how their actions are interpreted by the application.)
