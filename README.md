@@ -1,7 +1,7 @@
 # EECS568 Team16, Winter 2024
 
 ### Repository Information
-* [android_app_team16](https://github.com/zizien1019/NA568_Team16/tree/main/android_app_team16) containing the the project code for building Android app using Java. The back-end codes are implemented [here](https://github.com/zizien1019/NA568_Team16/tree/main/android_app_team16/app/src/main/java/com/mbsbahru/na568Teamproject_MohammedAlanUsmanBahru). 
+* [android_app_team16](https://github.com/zizien1019/NA568_Team16/tree/main/android_app_team16) containing the project code for building Android app using Java. The back-end codes are implemented [here](https://github.com/zizien1019/NA568_Team16/tree/main/android_app_team16/app/src/main/java/com/mbsbahru/na568Teamproject_MohammedAlanUsmanBahru). 
 * [Data_visualization](https://github.com/zizien1019/NA568_Team16/tree/main/Data_visualization) containing the code and data for examining the testing.
 * [python_code](https://github.com/zizien1019/NA568_Team16/tree/main/python_code) containing the code on implementing Kalman and Particle Filter.
 * [figures](https://github.com/zizien1019/NA568_Team16/tree/main/figures) containing the figures for documentation purpose.
@@ -17,7 +17,7 @@ This project implements an Android application for pose estimation in 6-DoF ($x$
 
 ### Installation
 * To develop and install the application via Android Studio please [read through this](android_app_team16/README.md).
-* To install the app more instantly you follow through this step:
+* To install the app more instantly you can follow through this step:
   - Download through your Android device, the generated '.apk' file [here](https://drive.google.com/file/d/1H8T5yAWxWS_5-SAM8eWqe3GmNhLwfa4T/view?usp=sharing).
   - Install the package by the Android built-in package installer or by using third-party APK installer from the Google Play.
   - Grant Permission for the application to access the camera by go through:\
@@ -75,8 +75,8 @@ K_{android\_gp7} = \begin{bmatrix}
     0 & 0 & 1
 \end{bmatrix}
 = \begin{bmatrix}
-    2998 & 8 & 1148\\
-    0 & 2971 & 2049\\
+    943.1746 & 2.5376 & 650.4762\\
+    0 & 951.7460 & 364.3175\\
     0 & 0 & 1
 \end{bmatrix} \\
 $$
